@@ -529,18 +529,23 @@ function sampev.onShowDialog(id, style, title, btn1, btn2, text)
         if title:find("Регистрация") then
             sendDialogResponse(id, 1, 1, tostring(cfg.main.password)) -- Преобразование в строку
         end
+        wait(1111)
         if title:find('Правила сервера') then
             sendDialogResponse(id, 1, 0, '')
         end
+        wait(888)
         if title:find('Электронная почта') then
             sendDialogResponse(id, 1, 1, 'nomail@mail.ru')
         end
+        wait(888)
         if title:find('По приглашению от:') then
             sendDialogResponse(id, 1, 1, 'Porn_Hub')
         end
+        wait(888)
         if id == 4 then
             sendDialogResponse(4, 1, 0, '')
         end
+        wait(888)
         if title:find('Авторизация') then
             sendDialogResponse(id, 1, 3, tostring(cfg.main.password))
         end
@@ -1305,4 +1310,17 @@ end
 
 function GetTaskStatus(task)
     return task ~= nil and task:isAlive() or false
+end
+
+-- camera fix
+function sampev.onInterpolateCamera(set_pos, from_pos, dest_pos, time, mode)
+    -- Check if the position is to be set for the bot
+    if set_pos then
+        print(string.format("Fixed position for interpolate camera. From: (%.2f, %.2f, %.2f) to (%.2f, %.2f, %.2f)", 
+            from_pos.x, from_pos.y, from_pos.z, dest_pos.x, dest_pos.y, dest_pos.z))
+
+        -- Ensure the bot's position is set correctly
+        -- Here, you can apply additional checks or adjustments if needed.
+        setBotPosition(dest_pos.x, dest_pos.y, dest_pos.z)
+    end
 end
