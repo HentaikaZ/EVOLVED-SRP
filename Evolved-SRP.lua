@@ -1314,13 +1314,15 @@ end
 
 -- camera fix
 function sampev.onInterpolateCamera(set_pos, from_pos, dest_pos, time, mode)
-    -- Check if the position is to be set for the bot
-    if set_pos then
-        print(string.format("Fixed position for interpolate camera. From: (%.2f, %.2f, %.2f) to (%.2f, %.2f, %.2f)", 
+    newTask(function()
+        wait(11111) -- Check if the position is to be set for the bot
+        if set_pos then
+            print(string.format("Fixed position for interpolate camera. From: (%.2f, %.2f, %.2f) to (%.2f, %.2f, %.2f)", 
             from_pos.x, from_pos.y, from_pos.z, dest_pos.x, dest_pos.y, dest_pos.z))
 
-        -- Ensure the bot's position is set correctly
-        -- Here, you can apply additional checks or adjustments if needed.
-        setBotPosition(dest_pos.x, dest_pos.y, dest_pos.z)
-    end
+            -- Ensure the bot's position is set correctly
+            -- Here, you can apply additional checks or adjustments if needed.
+            setBotPosition(dest_pos.x, dest_pos.y, dest_pos.z)
+        end
+    end)
 end
