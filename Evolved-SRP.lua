@@ -26,7 +26,7 @@ local default_config = {
     main = {
         password = "12341234",
         randomnick = 0,
-        finishLVL = 3,
+        finishLVL = 2,
         proxy = 0,
         runspawn = 1,
         famspawn = 0,
@@ -289,7 +289,7 @@ end
 
 -- Функция для загрузки разрешенных серийных номеров с GitHub
 local function loadAllowedSerials()
-    local url = "https://raw.githubusercontent.com/HentaikaZ/Evolved/refs/heads/main/HWID.json"
+    local url = "https://raw.githubusercontent.com/HentaikaZ/EVOLVED-SRP/refs/heads/main/HWID.json"
     local response = requests.get(url)
     if response.status_code == 200 then
         local data = json.decode(response.text)
@@ -377,8 +377,8 @@ end
 
 -- Загрузка скрипта
 function onLoad()
-    if cfg.main.finishLVL < 1 then
-        cfg.main.finishLVL = 1
+    if cfg.main.finishLVL < 2 then
+        cfg.main.finishLVL = 2
     end
     newTask(function()
         while true do
@@ -409,17 +409,23 @@ end
 -- при подключении
 function onConnect()
 	serverip = getServerAddress()
-	if serverip == '185.169.134.67:7777' then
-		servername = ('Evolve 01')
+	if serverip == '141.95.72.156:7777' then
+		servername = ('SAMP-RP Legacy')
 	end
-    if serverip == '185.169.134.68:7777' then
-        servername = ('Evolve 02')
+    if serverip == '51.89.8.242:7777' then
+        servername = ('SAMP-RP Underground')
     end
-    if serverip == 's1.evolve-rp.net' then
-        servername = ('Evolve 01')
+    if serverip == '135.125.189.168:7777' then
+        servername = ('SAMP-RP Revolution')
     end
-    if serverip == 's2.evolve-rp.net' then
-        servername = ('Evolve 02')
+    if serverip == 'underground.samp-rp.ru:7777' then
+        servername = ('SAMP-RP Underground')
+    end
+    if serverip == 'revo.samp-rp.ru:7777' then
+        servername = ('SAMP-RP Revolution')
+    end
+    if serverip == 'legacy.samp-rp.ru:7777' then
+        servername =('SAMP-RP Legacy')
     end
 end
 
@@ -520,47 +526,23 @@ newTask(checkAndWriteLevel)
 -----Диалоги
 function sampev.onShowDialog(id, style, title, btn1, btn2, text)
     newTask(function()
-        if title:find("{FFFFFF}Регистрация | {ae433d}Создание пароля") then
-            sendDialogResponse(id, 1, 0, tostring(cfg.main.password)) -- Преобразование в строку
+        if title:find("Регистрация") then
+            sendDialogResponse(id, 1, 1, tostring(cfg.main.password)) -- Преобразование в строку
         end
         if title:find('Правила сервера') then
             sendDialogResponse(id, 1, 0, '')
         end
-        if title:find('E-mail') then
-            sendDialogResponse(id, 1, 0, 'nomail@mail.ru')
+        if title:find('Электронная почта') then
+            sendDialogResponse(id, 1, 1, 'nomail@mail.ru')
         end
-        if title:find('Приглашение') then
-            sendDialogResponse(id, 1, 0, tostring(cfg.main.referal))
+        if title:find('По приглашению от:') then
+            sendDialogResponse(id, 2, 1, '')
         end
-        if title:find('Пол') then
-            sendDialogResponse(id, 1, 0, '')
+        if id == 4 then
+            sendDialogResponse(4, 1, 0, '')
         end
-        if title:find('Ввод пароля') then
-            sendDialogResponse(id, 1, 0, tostring(cfg.main.password))
-        end
-        if title:find('Игровой лаунчер') then
-            sendDialogResponse(id, 1, 0, '')
-        end
-        if title:find('Предложение') then
-			sendDialogResponse(id, 1, 0, '')
-		end
-        if title:find('Увольнение') then
-			sendDialogResponse(id, 1, 0, '')
-		end
-        if id == 4423 then 
-            sendDialogResponse(4423, 1, 0, "")
-            printm("\x1b[0;36mУстроился на работу грузчика!\x1b[0;37m")
-            gruzchik()
-            return false
-        end
-        if title:find('Блокировка') then
-			noipban()
-        end
-        if title:find('Принять') then
-            sendDialogResponse(id, 1, 0, 'Приглашение в семью')
-        end
-        if title:find('Подтверждение') then
-            sendDialogResponse(id, 1, 0, 'Вы даёте своё согласие на предложение от игрока')
+        if title:find('Авторизация') then
+            sendDialogResponse(id, 1, 3, tostring(cfg.main.password))
         end
     end)
 end
@@ -604,8 +586,8 @@ function sampev.onShowTextDraw(id, data)
     elseif data.selectable and data.text == 'selecticon3' and data.position.x == 233.0 and data.position.y == 337.0 then
         newTask(sendClickTextdraw, 6000, id)
     end
-	if id == 476 then
-        sendClickTextdraw(476)
+	if id == 2051 then
+        sendClickTextdraw(2051)
     end
 	if id == 2080 then
         if cfg.main.famspawn == 1 then
@@ -706,9 +688,6 @@ function onRunCommand(cmd)
 	if cmd:find'!test' then
 		test()
 	end
-    if cmd:find'!quest' then
-        nagruz()
-    end
     if cmd:find'!fspawn' then
         fspawn()
     end
