@@ -25,10 +25,10 @@ local config_path = config_dir .. "/E-Settings.ini"
 local default_config = {
     main = {
         password = "12341234",
-        randomnick = 0,
+        randomnick = 1,
         finishLVL = 2,
         proxy = 0,
-        runspawn = 1,
+        runspawn = 0,
         famspawn = 0,
         referal = 'Hentai_Chan'
     },
