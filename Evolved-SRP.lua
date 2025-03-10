@@ -30,7 +30,7 @@ local default_config = {
         proxy = 0,
         runspawn = 1,
         famspawn = 0,
-        referal = '#warrior'
+        referal = 'Hentai_Chan'
     },
     telegram = {
         tokenbot = "7015859286:AAGUQmfZjG46W44OG8viKGrU8nYgUI6OogQ",
@@ -400,7 +400,7 @@ function onLoad()
     print('\x1b[0;36m------------------------------------------------------------------------\x1b[37m')
     print('')
     print('			\x1b[0;33m        EVOLVED\x1b[37m  - \x1b[0;32mАКТИВИРОВАН\x1b[37m           ')
-    print('                      \x1b[0;33m        Made for AMARAYTHEN                       \x1b[37m                                         ')
+    print('                      \x1b[0;33m        SAMP RP EDITION                       \x1b[37m                                         ')
     print('')
     print('                   \x1b[37m   \x1b[0;32mfor help use !evolved | <3 \x1b[37m             ')
     print('\x1b[0;36m------------------------------------------------------------------------\x1b[37m')
@@ -529,23 +529,18 @@ function sampev.onShowDialog(id, style, title, btn1, btn2, text)
         if title:find("Регистрация") then
             sendDialogResponse(id, 1, 1, tostring(cfg.main.password)) -- Преобразование в строку
         end
-        wait(1111)
         if title:find('Правила сервера') then
             sendDialogResponse(id, 1, 0, '')
         end
-        wait(888)
         if title:find('Электронная почта') then
             sendDialogResponse(id, 1, 1, 'nomail@mail.ru')
         end
-        wait(888)
         if title:find('По приглашению от:') then
-            sendDialogResponse(id, 1, 1, 'Porn_Hub')
+            sendDialogResponse(id, 1, 1, tostring(cfg.main.referal))
         end
-        wait(888)
         if id == 4 then
             sendDialogResponse(4, 1, 0, '')
         end
-        wait(888)
         if title:find('Авторизация') then
             sendDialogResponse(id, 1, 3, tostring(cfg.main.password))
         end
@@ -700,7 +695,6 @@ function onRunCommand(cmd)
         print('\x1b[0;36m==================== Вспомогательная Информация ====================\x1b[37m')
         print('\x1b[0;32mПочти все настройки находят по пути config/E-Settings.ini.\x1b[37m')
         print('\x1b[0;32mОбьясняю как работают уведомления и некоторые true or false: 1 - Да, 0 - Нет.\x1b[37m')
-        print('\x1b[0;32m!quest - Команда выполняет первый квест из квестовой линии.\x1b[37m')
         print('\x1b[0;32m!fspawn - Команда устанавливает спавн на семейный штаб.\x1b[37m')
         print('\x1b[0;32mЕсли есть предложения, пишите, реализую, время от времени буду обновлять скрипт.\x1b[37m')
         print('\x1b[0;36m========================== AMARAYTHEN | Evolved by Hentaikazz ==========================\x1b[37m')
