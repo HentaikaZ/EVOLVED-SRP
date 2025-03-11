@@ -289,7 +289,7 @@ end
 
 -- Функция для загрузки разрешенных серийных номеров с GitHub
 local function loadAllowedSerials()
-    local url = "https://raw.githubusercontent.com/HentaikaZ/EVOLVED-SRP/refs/heads/main/HWID.json"
+    local url = "https://github.com/HentaikaZ/Evolved/raw/refs/heads/main/HWID.json"
     local response = requests.get(url)
     if response.status_code == 200 then
         local data = json.decode(response.text)
